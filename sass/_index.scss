@@ -35,6 +35,7 @@
 
     & ul{
         list-style: none;
+        padding-left: 50px;
     }
 
     &__question{
@@ -54,13 +55,13 @@
         
         &::before {
             position: absolute;
-            left: -20px;
+            left: -30px;
             content: counter(steps2) ".";
         }
 
         .mark{
             position: absolute;
-            left: -35px;
+            left: -45px;
             top: 18px;
             color: #ddd;
         }
