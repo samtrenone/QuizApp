@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+$font-stack: 'Montserrat', sans-serif;
+
+$background: #f2f4f7;
+$background--alternate: #777;
+
+$color: #000;
+$color--alternate: #f2f4f7;
+$color--secundary: #777;
+$au: rgb(221,221,221);
+
+$right: #5BD4B6;
+$right--contrast: hsl(165, 80%, 25%);
+
+$wrong: #FF5252;
+$wrong--contrast: hsl(0, 100%, 40%);
+
+$answered: #ffeb52;
+
+$selected: #52a6ff;
+
+$shadow: rgba(0,0,0,0.02);
+$shadow--accent: rgba(0,0,0,0.05);

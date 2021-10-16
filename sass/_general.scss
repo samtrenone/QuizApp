@@ -1,0 +1,42 @@
+:root{
+    box-sizing: border-box;
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0;
+    font-family: $font-stack;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    background-color: $background;
+}
+
+.container{
+    width:100%;
+    max-width: 800px;
+    min-width: 100px;
+    margin: 0 auto;
+}
+
+header{
+    position: fixed;
+    width:100%;
+    z-index:2;
+    top: 0;
+    background-color: $background--alternate;
+    color: $color--alternate;
+}
+
+// .quizPrevious{
+//     display: none;
+// }
+
+.controls{
+    display: flex;
+}
+.endQuiz{
+    margin-left: auto;
+}

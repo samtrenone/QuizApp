@@ -1,0 +1,166 @@
+.quiz{
+    margin-top: 2.5em;
+    padding: 2em;
+
+    .fa-stopwatch{
+        padding-right: 0.5em;
+        color: $color--secundary;
+    }
+    .timer{
+        font-size: 0.9rem;
+        color:#777;
+    }
+
+    &__score {
+        color: $color--secundary;
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+
+        p{
+            margin: 0;
+        }
+
+        .right{
+            color: $right--contrast;
+        }
+        .wrong{
+            color: $wrong--contrast;
+        }
+    }
+    &__show-results{
+        font-size: 0.7rem;
+        margin-right: 1em;
+    }
+    &__mark{
+        position: absolute;
+        transform: translateX(-2.5em);
+    }
+
+    &__counter{
+        font-size: 0.7rem;
+        color: $color--secundary;
+        margin: 0;
+        text-align: left;
+    }
+
+    &__reference{
+        font-size: 0.7rem;
+        color: $color--secundary;
+        margin: 0;
+        text-align: right;
+    }
+
+    &__question-wrapper{
+        position: relative;
+    }
+
+    &__mark{
+        position: absolute;
+        top: -1000px;
+
+        + label{
+            position: absolute;
+            color: #ccc;
+            cursor: pointer;
+            left: -25px;
+        }
+    }
+    &__mark:checked{
+        + label{
+            color: $selected;
+        }
+    }
+
+    &__options{
+        list-style: none;
+        margin: 2em 0;
+        counter-reset: steps;
+    }
+
+    
+    &__options--disabled > &__option {
+        cursor: default;
+        &:hover{
+            box-shadow:none;
+        }
+    }
+    &__option{
+        background-color: #fdfdfd;
+        position: relative;
+        counter-increment: steps;
+        padding: 1.2em 1.5em;
+        font-size: 0.9rem;
+        margin-bottom: 1em;
+        border-radius: 0.2em;
+        border:#fdfdfd solid 2px;
+        box-shadow: 0 0 0 1px $shadow;
+        cursor: pointer;
+        transition: border-color 300ms ease-in-out,
+            box-shadow 200ms ease-in-out, 
+            background-color 200ms ease-in-out;
+
+        &::before {
+            position: absolute;
+            left: -30px;
+            content: counter(steps, lower-latin) ".";
+        }
+
+        &:hover {
+            box-shadow: 0 0 4px 1px $shadow--accent;
+            background-color: #fff;
+        }
+
+        &--selected{
+            border-color: $selected;
+        }
+        &--answered{
+            border-color: $answered;
+        }
+        &--wrong{
+            border-color: $wrong;
+        }
+        &--right{
+            border-color: $right;
+        }
+    }
+    
+   
+
+    &__actions-nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1em;
+        margin-bottom: 2em;
+        border-bottom:1px solid rgb(221,221,221);
+    }
+
+    &__actions{
+        display: flex;
+        justify-content: center;
+        padding-top: 1.5em;
+        border-top:1px solid rgb(221,221,221);
+    }
+    &__answer{
+        margin-right: 1em;
+    }
+
+    &__explanation{
+        overflow: hidden;
+        margin: 0;
+        max-height: 0;
+        transition: max-height 2s ease-in-out;
+
+        p{
+            padding-top: 1em;
+            //font-size: 0.8rem;
+            color: $right--contrast;
+        }
+    }
+
+    &__option--right .quiz__explanation{
+        max-height: 1000px;
+    }
+}
