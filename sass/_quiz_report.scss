@@ -67,11 +67,12 @@
     &-panel{
         overflow: hidden;
         max-height: 0;
-        transition: max-height 2s ease-in-out;
+        transition: max-height .5s cubic-bezier(0,1,0,1);
     }
 
     &-panel--show{
         max-height: 1000px;
+        transition: max-height .5s cubic-bezier(1,0,1,0);
     }
 
     // &-totals{
