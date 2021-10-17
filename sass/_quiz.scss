@@ -151,7 +151,7 @@
         overflow: hidden;
         margin: 0;
         max-height: 0;
-        transition: max-height 2s ease-in-out;
+        transition: max-height .5s cubic-bezier(0,1,0,1); //to override the delay with big max-height values
 
         p{
             padding-top: 1em;
@@ -160,7 +160,8 @@
         }
     }
 
-    &__option--right .quiz__explanation{
+    &__option--right &__explanation{
         max-height: 1000px;
+        transition: max-height .5s cubic-bezier(1,0,1,0);
     }
 }
