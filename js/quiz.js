@@ -113,10 +113,6 @@ class Quiz {
         <label for="quiz__mark"><i class="fas fa-bookmark"></i></label>
         <p class="quiz__question"></p>
     </div>
-    <p class="quiz__reference">
-        <span class="quiz__domain"></span><br />
-        <span class="quiz__source"></span>
-    </p>
     <ol class="quiz__options"></ol>
     <div class="quiz__actions">
         <button class="btn btn--large quiz__answer">Answer</button>
@@ -140,8 +136,6 @@ class Quiz {
             timer: document.querySelector('.timer'),
             mark: document.querySelector('.quiz__mark'),
             question: document.querySelector('.quiz__question'),
-            domain: document.querySelector('.quiz__domain'),
-            source: document.querySelector('.quiz__source'),
             options: document.querySelector('.quiz__options'),
             answer: document.querySelector('.quiz__answer'),
             clear: document.querySelector('.quiz__clear'),

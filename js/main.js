@@ -86,8 +86,6 @@ function launchCurrentQuestion() {
 
 function clearQuestion() {
     quiz.elements.question.textContent = '';
-    quiz.elements.domain.textContent = '';
-    quiz.elements.source.textContent = '';
 
     clearElementChildren(quiz.elements.options);
 }
@@ -97,8 +95,6 @@ function renderQuestion(quizQuestion = quiz.getCurrentQuestion()) {
     let dataQuestion = getDataQuestion(quizQuestion.id);
 
     quiz.elements.question.textContent = dataQuestion.question;
-    quiz.elements.domain.textContent = dataQuestion.domain;
-    quiz.elements.source.textContent = dataQuestion.source;
     let newLi;
     quizQuestion.answers.forEach(el => {
         let answer = getDataQuestionAnswer(dataQuestion, el.id);
@@ -110,7 +106,8 @@ function renderQuestion(quizQuestion = quiz.getCurrentQuestion()) {
         if (answer.correct) {
             let newDiv = document.createElement('div');
             newDiv.classList.add('quiz__explanation');
-            newDiv.innerHTML = `<p>${dataQuestion.explanation}</p>`;
+            newDiv.innerHTML = `<p class="quiz__explanation">${dataQuestion.explanation}</p>
+            <p class="quiz__reference">${dataQuestion.domain}<br/>${dataQuestion.source}</p>`;
             newLi.appendChild(newDiv);
         }
         quiz.elements.options.appendChild(newLi);
