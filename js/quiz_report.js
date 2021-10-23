@@ -36,13 +36,16 @@ function renderQuizReportQuestions() {
             this.querySelector('.quiz__report-panel').classList.toggle('quiz__report-panel--show');
         });
 
+        let newUlAnswers = document.createElement('ul');
+        newUlAnswers.classList.add('quiz__report-answer');
+        dataQuestion.answers.forEach( answer => {
+            let newLiAnswer = document.createElement('li');
+            newLiAnswer.textContent = answer.answer;
+            newUlAnswers.appendChild(newLiAnswer)
+        });
+
         newLi.innerHTML = `<i class="fa fa-bookmark mark"></i><p>${dataQuestion.question}</p>
         <div class="quiz__report-panel">
-        <!--<ul class="quiz__report-answer">
-            ${dataQuestion.answers.map(el => {
-                return `<li>${el.answer}</li>`;
-            }) }
-        </ul>-->
         
         <p class="quiz__report-explanation">${dataQuestion.explanation}</p>
         <p class="quiz__report-reference">${dataQuestion.domain}<br/>${dataQuestion.source}</p>
