@@ -8,9 +8,8 @@ answers
     answer
     correct -> bool
 explanation
-    text
-    ref
-    dom
+source
+domain
 */
 
 function getDataQuestion(id) {

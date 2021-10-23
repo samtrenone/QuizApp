@@ -40,8 +40,8 @@ function renderQuizReportQuestions() {
         <div class="quiz__report-panel">
         <p class="quiz__report-answer">${getDataQuestionRightAnswer(dataQuestion).answer}</p>
         
-        <p class="quiz__report-explanation">${dataQuestion.explanation.text}</p>
-        <p class="quiz__report-reference">${dataQuestion.explanation.ref}</p>
+        <p class="quiz__report-explanation">${dataQuestion.explanation}</p>
+        <p class="quiz__report-reference">${dataQuestion.domain}<br/>${dataQuestion.source}</p>
         </div>`;
         newUl.appendChild(newLi);
     });
