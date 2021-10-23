@@ -16,11 +16,11 @@ explanation
 function getDataQuestion(id) {
     return dataQuestions.find(el => el.id == id);
 }
-function getDataQuestionAnswer(question, id) {
-    return question.answers.find(el => el.id == id);
+function getDataQuestionAnswer(dataQuestion, id) {
+    return dataQuestion.answers.find(el => el.id == id);
 }
-function getDataQuestionRightAnswer(question) {
-    return question.answers.find(el => el.correct);
+function getDataQuestionRightAnswer(dataQuestion) {
+    return dataQuestion.answers.find(el => el.correct);
 }
 function getRandomQuestions(number = dataQuestions.length) {
 
