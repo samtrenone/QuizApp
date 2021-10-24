@@ -56,7 +56,12 @@
 
     }
     &-answer{
-        color: $right--contrast;
+        &--right{
+            color: $right--contrast;
+        }
+        &--wrong{
+            color: $wrong--contrast;
+        }
     }
     &-reference{
         font-size: 0.7rem;
