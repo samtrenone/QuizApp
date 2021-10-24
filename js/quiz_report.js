@@ -40,6 +40,7 @@ function renderQuizReportQuestions() {
         dataQuestion.answers.forEach( answer => {
             let newLiAnswer = document.createElement('li');
             if(answer.correct) newLiAnswer.classList.add('quiz__report-answer--right');
+            if(answer.id == question.selectedId && question.result == 'wrong') newLiAnswer.classList.add('quiz__report-answer--wrong');
             newLiAnswer.textContent = answer.answer;
             newUlAnswers.appendChild(newLiAnswer)
         });
