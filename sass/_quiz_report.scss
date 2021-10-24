@@ -56,7 +56,9 @@
 
     }
     &-answer{
-        color: $right--contrast;
+        &--right{
+            color: $right--contrast;
+        }
     }
     &-reference{
         font-size: 0.7rem;

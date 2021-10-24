@@ -37,9 +37,9 @@ function renderQuizReportQuestions() {
         });
 
         let newUlAnswers = document.createElement('ul');
-        newUlAnswers.classList.add('quiz__report-answer');
         dataQuestion.answers.forEach( answer => {
             let newLiAnswer = document.createElement('li');
+            if(answer.correct) newLiAnswer.classList.add('quiz__report-answer--right');
             newLiAnswer.textContent = answer.answer;
             newUlAnswers.appendChild(newLiAnswer)
         });
