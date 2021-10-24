@@ -46,7 +46,7 @@ function renderQuizReportQuestions() {
 
         newLi.innerHTML = `<i class="fa fa-bookmark mark"></i><p>${dataQuestion.question}</p>
         <div class="quiz__report-panel">
-        
+        ${newUlAnswers.outerHTML}
         <p class="quiz__report-explanation">${dataQuestion.explanation}</p>
         <p class="quiz__report-reference">${dataQuestion.domain}<br/>${dataQuestion.source}</p>
         </div>`;
