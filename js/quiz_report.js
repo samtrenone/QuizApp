@@ -39,8 +39,13 @@ function renderQuizReportQuestions() {
         let newUlAnswers = document.createElement('ul');
         dataQuestion.answers.forEach( answer => {
             let newLiAnswer = document.createElement('li');
-            if(answer.correct) newLiAnswer.classList.add('quiz__report-answer--right');
-            if(answer.id == question.selectedId && question.result == 'wrong') newLiAnswer.classList.add('quiz__report-answer--wrong');
+            if(answer.correct){
+                newLiAnswer.classList.add('quiz__report-answer--right');
+            }else if(answer.id == question.selectedId && question.result == 'wrong'){
+                newLiAnswer.classList.add('quiz__report-answer--wrong');
+            }else{
+                newLiAnswer.classList.add('quiz__report-answer');
+            }
             newLiAnswer.textContent = answer.answer;
             newUlAnswers.appendChild(newLiAnswer)
         });
