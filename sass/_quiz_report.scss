@@ -31,13 +31,13 @@
         
         &::before {
             position: absolute;
-            left: -20px;
+            left: -30px;
             content: counter(steps2) ".";
         }
 
         .mark{
             position: absolute;
-            left: -35px;
+            left: -45px;
             top: 18px;
             color: #ddd;
         }
@@ -56,6 +56,8 @@
 
     }
     &-answer{
+        color: $color--secundary;
+
         &--right{
             color: $right--contrast;
         }
