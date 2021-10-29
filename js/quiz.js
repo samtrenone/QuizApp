@@ -230,4 +230,34 @@ class Quiz {
         let result = this.getTotalWrong() * 100 / this.getTotalQuestions();
         return result.toFixed(2);
     }
+
+    getQuestionsByDomain(domainIndex) {
+        return this.questions.filter(el => el.domain() == dataDomains[domainIndex]);
+    }
+    getTotalQuestionsByDomain(domainIndex){
+        return this.getQuestionsByDomain(domainIndex).length;
+    }
+    getTotalAnsweredByDomain(domainIndex) {
+        return this.getQuestionsByDomain(domainIndex).filter(el => el.answered).length;
+    }
+    
+    getTotalRightByDomain(domainIndex) {
+        return this.questions.filter(el => el.result == 'right' && el.domain() == dataDomains[domainIndex]).length;
+    }
+    getPercentageRightByDomain(domainIndex) {
+        let total = this.getTotalQuestionsByDomain(domainIndex);
+        if (total==0) return 0.00;
+        let result = this.getTotalRightByDomain(domainIndex) * 100 / total;
+        return result.toFixed(2);
+    }
+
+    getTotalWrongByDomain(domainIndex) {
+        return this.questions.filter(el => el.result == 'wrong' && el.domain() == dataDomains[domainIndex]).length;
+    }
+    getPercentageWrongByDomain(domainIndex) {
+        let total = this.getTotalQuestionsByDomain(domainIndex);
+        if (total==0) return 0.00;
+        let result = this.getTotalWrongByDomain(domainIndex) * 100 / total;
+        return result.toFixed(2);
+    }
 }
