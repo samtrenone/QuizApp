@@ -6,11 +6,16 @@ correctId -> id
 selectedId -> id
 selected -> bool
 answered -> bool
-result -> 'right', 'wrong'
+result -> 'right', 'wrong', 'unanswered'
 marked -> bool
 */
 class Question {
-    constructor() { }
+    constructor() { 
+        this.selected = false;
+        this.answered = false;
+        this.result = 'unanswered';
+        this.marked = false;
+    }
     loadFromData(question) {
         this.id = question.id;
         this.answers = [];
