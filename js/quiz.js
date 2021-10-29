@@ -232,20 +232,32 @@ class Quiz {
     }
 
     getQuestionsByDomain(domainIndex) {
-        return this.questions.filter(el => el.domain == dataDomains(domainIndex));
+        return this.questions.filter(el => el.domain == dataDomains[domainIndex]);
     }
     getTotalQuestionsByDomain(domainIndex){
-        return getQuestionsByDomain(domainIndex).length;
+        return this.getQuestionsByDomain(domainIndex).length;
     }
     getTotalAnsweredByDomain(domainIndex) {
-        return this.questions.filter(el => el.answered && el.domain == dataDomains(domainIndex)).length;
+        return this.questions.filter(el => el.answered && el.domain == dataDomains[domainIndex]).length;
     }
     
+    getTotalRightByDomain(domainIndex) {
+        return this.questions.filter(el => el.result == 'right' && el.domain == dataDomains[domainIndex]).length;
+    }
+    getPercentageRightByDomain(domainIndex) {
+        let total = this.getTotalQuestionsByDomain(domainIndex);
+        if (total==0) return 0.00;
+        let result = this.getTotalRightByDomain(domainIndex) * 100 / total;
+        return result.toFixed(2);
+    }
+
     getTotalWrongByDomain(domainIndex) {
-        return this.questions.filter(el => el.result == 'wrong' && el.domain == dataDomains(domainIndex)).length;
+        return this.questions.filter(el => el.result == 'wrong' && el.domain == dataDomains[domainIndex]).length;
     }
     getPercentageWrongByDomain(domainIndex) {
-        let result = this.getTotalWrongByDomain(domainIndex) * 100 / this.getTotalQuestionsByDomain(domainIndex);
+        let total = this.getTotalQuestionsByDomain(domainIndex);
+        if (total==0) return 0.00;
+        let result = this.getTotalWrongByDomain(domainIndex) * 100 / total;
         return result.toFixed(2);
     }
 }
