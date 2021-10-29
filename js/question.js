@@ -44,4 +44,8 @@ class Question {
         this.result = this.selectedId == this.correctId ? 'right' : 'wrong';
         this.answered = true;
     }
+
+    domain(){
+        return getDataQuestion(this.id).domain;
+    }
 }

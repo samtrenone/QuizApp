@@ -6,6 +6,10 @@ function renderQuizReport(){
     <p class="quiz__report-answered">Answered: ${quiz.getTotalAnswered()} of ${quiz.getTotalQuestions()}</p>
     <p class="quiz__report-right">Right: ${quiz.getTotalRight()} / ${quiz.getPercentageRight()}%</p>
     <p class="quiz__report-wrong">Wrong: ${quiz.getTotalWrong()} / ${quiz.getPercentageWrong()}%</p>
+    <br/>
+    <p class="quiz__report-answered">${dataDomains(0)} answered: ${quiz.getTotalAnsweredByDomain(0)} of ${quiz.getTotalQuestionsByDomain(0)}</p>
+    <p class="quiz__report-right">Right: ${quiz.getTotalRightByDomain(0)} / ${quiz.getPercentageRightByDomain(0)}%</p>
+    <p class="quiz__report-wrong">Wrong: ${quiz.getTotalWrongByDomain(0)} / ${quiz.getPercentageWrongByDomain(0)}%</p>
     </div>
     <div class="quiz__report-results-graph">
         <div class="quiz__report-right-graph"></div><div class="quiz__report-wrong-graph"></div><div class="quiz__report-rest-graph"></div>
