@@ -5,6 +5,13 @@ function shuffleArray(array) {
     }
 }
 
+function mergeArrays(...arrays) {
+    let result = arrays.reduce((acc, el) => {
+        return acc.concat(el);
+    }, []);
+    return result;
+}
+
 function clearElementChildren(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
