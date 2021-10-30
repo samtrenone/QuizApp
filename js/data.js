@@ -23,9 +23,25 @@ function getDataQuestionRightAnswer(dataQuestion) {
 }
 function getRandomQuestions(number = dataQuestions.length) {
 
-    if (number >= dataQuestions.length) return dataQuestions;
-
     let result = [...dataQuestions];
     shuffleArray(result);
+
+    if (number >= result.length) return result;
+    
     return result.slice(0, number);
+}
+function getNumberQuestionsByDomain(domain){
+    return dataQuestions.filter(el => el.domain==domain).length;
+}
+function getRandomQuestionsDomain(number, domain='') {
+
+    let dataQuestionsLocal = [...dataQuestions];
+
+    if (domain != '') dataQuestionsLocal = dataQuestionsLocal.filter(el => el.domain==domain);
+    
+    shuffleArray(dataQuestionsLocal);
+
+    if (number >= dataQuestionsLocal.length) return dataQuestionsLocal;
+    
+    return dataQuestionsLocal.slice(0, number);
 }
