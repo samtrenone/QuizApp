@@ -5,7 +5,7 @@ function shuffleArray(array) {
     }
 }
 
-function mixAndShuffleArrays(...arrays) {
+function mergeArrays(...arrays) {
     let result = arrays.reduce((acc, el) => {
         return acc.concat(el);
     }, []);
