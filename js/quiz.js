@@ -232,7 +232,7 @@ class Quiz {
     }
 
     getQuestionsByDomain(domainIndex) {
-        return this.questions.filter(el => el.domain() == dataDomains[domainIndex]);
+        return this.questions.filter(el => el.domain() == dataDomains[domainIndex].title);
     }
     getTotalQuestionsByDomain(domainIndex){
         return this.getQuestionsByDomain(domainIndex).length;
