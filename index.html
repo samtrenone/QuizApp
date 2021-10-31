@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Initial layout for the application -->
+    <!-- Just the menu and a main container for the quiz -->
     <header>
         <div class="container controls">
             <button class="btn btn--link showIndex" title="Show index" disabled>Show index</button>
@@ -24,14 +25,17 @@
     <div class="container">
         <div class="quiz"></div>
     </div>
-    <script src="js/helpers.js"></script>
-    <script src="js/data_file.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/quiz.js"></script>
-    <script src="js/question.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/quiz_report.js"></script>
-    <script src="js/main.js"></script>
+
+    <!-- "Classic" script load -->
+    <!-- The javascript modules won't work on local execution enviroments -->
+    <script src="js/helpers.js"></script> <!-- General basic functions -->
+    <script src="js/data_file.js"></script> <!-- Data structures with the contents of the questions -->
+    <script src="js/data.js"></script> <!-- Functions to retrieve the contents of the data -->
+    <script src="js/quiz.js"></script> <!-- Class to control the quiz -->
+    <script src="js/question.js"></script> <!-- Class to control each question -->
+    <script src="js/index.js"></script> <!-- Control and render of the sidebar with the index of the questions -->
+    <script src="js/timer.js"></script> <!-- Render control for the timer -->
+    <script src="js/quiz_report.js"></script> <!-- Control and render of the report at the end of the quiz -->
+    <script src="js/main.js"></script> <!-- Initialization and interface control -->
 </body>
 </html>
