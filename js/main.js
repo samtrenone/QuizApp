@@ -132,25 +132,33 @@ function renderQuestion(quizQuestion = quiz.getCurrentQuestion()) {
 }
 
 
-function updateAnsweredClasses() {
+function updateAnswersClasses() {
     let quizQuestion = quiz.getCurrentQuestion();
-    if (!quizQuestion.answered) return;
 
     let correctEl = document.querySelector(`[data-id="${quizQuestion.correctId}"]`);
-    let selectedEl = document.querySelector(`[data-id="${quizQuestion.selectedId}"]`);
-
-    selectedEl.classList.remove('quiz__option--selected');
+    
+    //correct class cleanup
     correctEl.classList.remove('quiz__option--right');
-    selectedEl.classList.remove('quiz__option--wrong');
-    selectedEl.classList.remove('quiz__option--answered');
 
-    if (quiz.showResults) {
-        correctEl.classList.add('quiz__option--right');
-        if (quizQuestion.result == 'wrong') {
-            selectedEl.classList.add('quiz__option--wrong');
+    //selection classes cleanup
+    if (quizQuestion.selected) {
+        selectedEl.classList.remove('quiz__option--selected');
+        selectedEl.classList.remove('quiz__option--wrong');
+        selectedEl.classList.remove('quiz__option--answered');
+    }
+
+    if (quizQuestion.answered) { //answered classes setup
+        if (quiz.showResults) {
+            correctEl.classList.add('quiz__option--right');
+            if (quizQuestion.result == 'wrong') {
+                selectedEl.classList.add('quiz__option--wrong');
+            }
+        } else {
+            selectedEl.classList.add('quiz__option--answered');
         }
-    } else {
-        selectedEl.classList.add('quiz__option--answered');
+    } else if (quizQuestion.selected) { //select class setup
+        let selectedEl = document.querySelector(`[data-id="${quizQuestion.selectedId}"]`);
+        selectedEl.classList.add('quiz__option--selected');
     }
 }
 
@@ -159,10 +167,10 @@ function updateInterface(quizQuestion = quiz.getCurrentQuestion()) {
     renderTotals();
     renderMarked();
 
-    if (quizQuestion.answered) {
-        updateAnsweredClasses();
-        updateAnsweredClassesIndex(quizQuestion.id);
+    updateAnswersClasses();
+    updateAnsweredClassesIndex(quizQuestion.id);
 
+    if (quizQuestion.answered) {
         disableAnswers();
         setAnswerButton(false);
         setClearButton(true);
@@ -172,7 +180,7 @@ function updateInterface(quizQuestion = quiz.getCurrentQuestion()) {
         setAnswerButton(true);
         setClearButton(true);
         disableNavigation();
-    } else { //new or viewed question
+    } else { //new, viewed or cleared question
         enableAnswers();
         setAnswerButton(false);
         setClearButton(false);
@@ -242,8 +250,6 @@ function selectAnswer(e) {
     if (e.target.matches('.quiz__option')) {
         quiz.getCurrentQuestion().setSelected(e.target.getAttribute('data-id'));
 
-        e.target.classList.add('quiz__option--selected');
-
         updateInterface();
 
         quiz.save();
@@ -252,10 +258,6 @@ function selectAnswer(e) {
 
 function clearAnswers() {
     quiz.getCurrentQuestion().clearSelected();
-
-    Array.from(quiz.elements.options.children).forEach(el => {
-        el.classList.remove('quiz__option--selected');
-    });
 
     quiz.getCurrentQuestion().uncheckAnswer();
 
