@@ -178,8 +178,11 @@ function updateInterface(quizQuestion = quiz.getCurrentQuestion()) {
     }
 }
 
-function setAnswerClearButtons(enable) {
+function setAnswerButton(enable) {
     quiz.elements.answer.disabled = !enable;
+}
+
+function setClearButton(enable) {
     quiz.elements.clear.disabled = !enable;
 }
 
