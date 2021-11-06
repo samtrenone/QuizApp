@@ -164,16 +164,18 @@ function updateInterface(quizQuestion = quiz.getCurrentQuestion()) {
         updateAnsweredClassesIndex(quizQuestion.id);
 
         disableAnswers();
-        //paintAnswer();
-        setAnswerClearButtons(false);
+        setAnswerButton(false);
+        setClearButton(true);
         enableNavigation();
     } else if (quizQuestion.selected) {
         disableAnswers();
-        setAnswerClearButtons(true);
+        setAnswerButton(true);
+        setClearButton(true);
         disableNavigation();
     } else { //new or viewed question
         enableAnswers();
-        setAnswerClearButtons(false);
+        setAnswerButton(false);
+        setClearButton(false);
         enableNavigation();
     }
 }
@@ -254,6 +256,8 @@ function clearAnswers() {
     Array.from(quiz.elements.options.children).forEach(el => {
         el.classList.remove('quiz__option--selected');
     });
+
+    quiz.getCurrentQuestion().uncheckAnswer();
 
     updateInterface();
 
