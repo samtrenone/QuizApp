@@ -49,6 +49,10 @@ class Question {
         this.result = this.selectedId == this.correctId ? 'right' : 'wrong';
         this.answered = true;
     }
+    uncheckAnswer() {
+        this.result = 'unanswered';
+        this.answered = false;
+    }
 
     domain(){
         return getDataQuestion(this.id).domain;
