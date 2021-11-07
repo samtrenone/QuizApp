@@ -83,6 +83,7 @@ class Quiz {
 
         if(questions.length){
             storage.push({
+                    total:this.questions.length,
                     questions: questions,
                     start: this.start,
                     end: this.end
