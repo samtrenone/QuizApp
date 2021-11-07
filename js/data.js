@@ -10,7 +10,42 @@ answers
 explanation
 source
 domain
+history
+    result -> 'right', 'wrong', 'unanswered'
+    marked -> bool
 */
+
+function initDataHistory(){
+    //sets the default value
+    dataQuestions = dataQuestions.map(dataQuestion => {
+        dataQuestion.history = {
+            result : 'unanswered',
+            marked : false
+        };
+        return dataQuestion;
+    });
+
+    const storage = JSON.parse(localStorage.getItem('quizGeneral'));
+    if (storage) {
+        let found = []; //to keep track of the already found questions
+
+        storage.sort((a,b) => b.start - a.start); //sorts the historic data by date from newest to oldest
+
+        //cycles every quiz recorder in the history
+        storage.forEach(el => {
+            //only interested in answered or marked questions
+            el.questions.filter(el => el.result != 'unanswered' || el.marked).forEach(question => {
+                //checks if its already being found
+                if(!found.includes(question.id)){
+                    dataQuestion = dataQuestions.find(el => el.id == question.id);
+                    dataQuestion.history.result = question.result;
+                    dataQuestion.history.marked = question.marked;
+                    found.push(question.id);
+                }
+            });
+        });
+    }
+}
 
 function getDataQuestion(id) {
     return dataQuestions.find(el => el.id == id);

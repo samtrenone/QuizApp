@@ -1,5 +1,7 @@
 let quiz;
 
+initDataHistory(); //to recall any historic data
+
 const controlElements = {
     showIndex: document.querySelector('.showIndex'),
     quiz10: document.querySelector('.quiz10'),
