@@ -8,6 +8,7 @@ selected -> bool
 answered -> bool
 result -> 'right', 'wrong', 'unanswered'
 marked -> bool
+history -> 'right', 'wrong', 'unanswered'
 */
 class Question {
     constructor() { 
@@ -15,6 +16,7 @@ class Question {
         this.answered = false;
         this.result = 'unanswered';
         this.marked = false;
+        this.history = 'unanswered';
     }
     loadFromData(question) {
         this.id = question.id;
