@@ -29,7 +29,6 @@ class Quiz {
                 question.loadFromData(el);
                 this.questions.push(question);
             });
-            shuffleArray(this.questions);
         }
 
         this.root = document.querySelector('.quiz');
