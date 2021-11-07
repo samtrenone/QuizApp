@@ -88,7 +88,7 @@ function prevQuestion() {
 function showResults(e) {
     quiz.showResults = e.target.checked;
     renderTotals();
-    updateAnsweredClasses();
+    updateAnswersClasses();
     updateAnsweredClassesIndexAll();
     quiz.save();
 }
@@ -141,24 +141,28 @@ function updateAnswersClasses() {
     correctEl.classList.remove('quiz__option--right');
 
     //selection classes cleanup
-    if (quizQuestion.selected) {
-        selectedEl.classList.remove('quiz__option--selected');
-        selectedEl.classList.remove('quiz__option--wrong');
-        selectedEl.classList.remove('quiz__option--answered');
-    }
+    Array.from(quiz.elements.options.children).forEach(el => {
+        el.classList.remove('quiz__option--selected');
+        el.classList.remove('quiz__option--wrong');
+        el.classList.remove('quiz__option--answered');
+    });
+    
 
-    if (quizQuestion.answered) { //answered classes setup
-        if (quiz.showResults) {
-            correctEl.classList.add('quiz__option--right');
-            if (quizQuestion.result == 'wrong') {
-                selectedEl.classList.add('quiz__option--wrong');
-            }
-        } else {
-            selectedEl.classList.add('quiz__option--answered');
-        }
-    } else if (quizQuestion.selected) { //select class setup
+    if (quizQuestion.selected) {
         let selectedEl = document.querySelector(`[data-id="${quizQuestion.selectedId}"]`);
-        selectedEl.classList.add('quiz__option--selected');
+
+        if (quizQuestion.answered) { //answered classes setup
+            if (quiz.showResults) {
+                correctEl.classList.add('quiz__option--right');
+                if (quizQuestion.result == 'wrong') {
+                    selectedEl.classList.add('quiz__option--wrong');
+                }
+            } else {
+                selectedEl.classList.add('quiz__option--answered');
+            }
+        } else { //select class setup (selected but not yet answered)
+            selectedEl.classList.add('quiz__option--selected');
+        }
     }
 }
 
