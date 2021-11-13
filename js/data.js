@@ -31,7 +31,7 @@ function initDataHistory(){
 
         storage.sort((a,b) => b.start - a.start); //sorts the historic data by date from newest to oldest
 
-        //cycles every quiz recorder in the history
+        //cycles every quiz recorded in the history
         storage.forEach(el => {
             //only interested in answered or marked questions
             el.questions.filter(el => el.result != 'unanswered' || el.marked).forEach(question => {
