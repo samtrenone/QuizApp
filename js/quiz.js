@@ -69,24 +69,59 @@ class Quiz {
     }
 
     saveGeneral() {
-        let storage = JSON.parse(localStorage.getItem('quizGeneral'));
-        if (!storage) {
-            storage = [];
-        }
-        
+        //only records the questions answered and/or marked
         let questions = this.questions.filter( question => question.answered || question.marked ).map( question => ({
             id: question.id,
             result: question.result,
             marked: question.marked
         }));
+        let answeredQuestions = questions.filter(question => question.result != 'unanswered').map(el => {
+            let {marked, ...newEl} = el;
+            return newEl;
+        });
+        //check all the questions for the marked questions 
+        let markedQuestions = this.questions.map( question => ({
+            id: question.id,
+            marked: question.marked
+        }));
 
         if(questions.length){
-            storage.push({
+            let storage = JSON.parse(localStorage.getItem('quizGeneral'));
+            if (!storage) { //there are not previous record
+                storage = {
+                    answeredHistory : answeredQuestions ,
+                    markedHistory : markedQuestions.filter(question => question.marked) ,
+                    quizHistory : []
+                    };
+            } else{
+                answeredQuestions.forEach(el => {
+                    //check if there is a previous record with the same id
+                    if(storage.answeredHistory.some(el2 => el.id == el2.id)){
+                        let element = storage.answeredHistory.find(el2 => el.id == el2.id);
+                        element.result = el.result;
+                    }else{
+                        storage.answeredHistory.push(el);
+                    }
+                });
+                markedQuestions.forEach(el => {
+                    //check if there is a previous record with the same id
+                    if(storage.markedHistory.some(el2 => el.id == el2.id)){
+                        let element = storage.markedHistory.find(el2 => el.id == el2.id);
+                        element.marked = el.marked;
+                    }else{
+                        storage.markedHistory.push(el);
+                    }
+                });
+                storage.markedHistory = storage.markedHistory.filter(question => question.marked);
+            }
+        
+            storage.quizHistory.push({
                     total:this.questions.length,
                     questions: questions,
                     start: this.start,
                     end: this.end
             });
+
             localStorage.setItem('quizGeneral', JSON.stringify(storage));
         }
     }
