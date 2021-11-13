@@ -15,7 +15,7 @@ history
     marked -> bool
 */
 
-function initDataHistory(){
+function initDataHistory(){ //to recall any historic data
     //sets the default value
     dataQuestions = dataQuestions.map(dataQuestion => {
         dataQuestion.history = {
@@ -27,22 +27,13 @@ function initDataHistory(){
 
     const storage = JSON.parse(localStorage.getItem('quizGeneral'));
     if (storage) {
-        let found = []; //to keep track of the already found questions
-
-        storage.sort((a,b) => b.start - a.start); //sorts the historic data by date from newest to oldest
-
-        //cycles every quiz recorded in the history
-        storage.forEach(el => {
-            //only interested in answered or marked questions
-            el.questions.filter(el => el.result != 'unanswered' || el.marked).forEach(question => {
-                //checks if its already being found
-                if(!found.includes(question.id)){
-                    dataQuestion = dataQuestions.find(el => el.id == question.id);
-                    dataQuestion.history.result = question.result;
-                    dataQuestion.history.marked = question.marked;
-                    found.push(question.id);
-                }
-            });
+        storage.answeredHistory.forEach(el => {
+            let question = dataQuestions.find(el2 => el2.id == el.id);
+            question.history.result = el.result;
+        });
+        storage.markedHistory.forEach(el => {
+            let question = dataQuestions.find(el2 => el2.id == el.id);
+            question.history.marked = el.marked;
         });
     }
 }
@@ -58,6 +49,8 @@ function getDataQuestionRightAnswer(dataQuestion) {
 }
 function getRandomQuestions(number = dataQuestions.length) {
 
+    initDataHistory();
+
     let result = [...dataQuestions];
     shuffleArray(result);
 
@@ -69,6 +62,8 @@ function getNumberQuestionsByDomain(domain){
     return dataQuestions.filter(el => el.domain==domain).length;
 }
 function getRandomQuestionsDomain(number, domain='') {
+
+    initDataHistory();
 
     let dataQuestionsLocal = [...dataQuestions];
 
