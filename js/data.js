@@ -51,8 +51,7 @@ function getRandomQuestions(number = dataQuestions.length) {
 
     initDataHistory();
 
-    let result = [...dataQuestions];
-    shuffleArray(result);
+    let result = applyShowParams(dataQuestions);
 
     if (number >= result.length) return result;
     
@@ -69,9 +68,27 @@ function getRandomQuestionsDomain(number, domain='') {
 
     if (domain != '') dataQuestionsLocal = dataQuestionsLocal.filter(el => el.domain==domain);
     
-    shuffleArray(dataQuestionsLocal);
+    if(showParams.shuffle){
+        shuffleArray(dataQuestionsLocal);
+    }
 
     if (number >= dataQuestionsLocal.length) return dataQuestionsLocal;
     
     return dataQuestionsLocal.slice(0, number);
+}
+
+function applyShowParams(questions){
+    let result = [...dataQuestions];
+
+    if(showParams.shuffle) shuffleArray(result);
+    
+    showParams.sources.forEach((sourceParam,index) => {
+        if(!sourceParam) result = result.filter(el2 => !el2.source.includes(dataSources[index].title));
+    });
+    
+    showParams.domains.forEach((domainParam,index) => {
+        if(!domainParam) result = result.filter(el2 => el2.domain != dataDomains[index].title);
+    });
+
+    return result;
 }
