@@ -53,6 +53,8 @@ function getRandomQuestions(number = dataQuestions.length) {
 
     let result = applyShowParams(dataQuestions);
 
+    result = setUnansweredFirst(result);
+
     if (number >= result.length) return result;
     
     return result.slice(0, number);
@@ -75,6 +77,21 @@ function getRandomQuestionsDomain(number, domain='') {
     if (number >= dataQuestionsLocal.length) return dataQuestionsLocal;
     
     return dataQuestionsLocal.slice(0, number);
+}
+
+//reorders the array so the unanswered question go first
+function setUnansweredFirst(questions){
+    let result = [...questions];
+
+    result.sort((a,b)=>{
+        if (a.history.result === b.history.result)
+            return 0; //doesnt change order
+        else if(a.history.result === 'unanswered')
+            return -1; //a is 'unanswered' so put it first
+        else if(b.history.result === 'unanswered')
+            return 1;  //b is 'unanswered' so put it first
+    });
+    return result;
 }
 
 function applyShowParams(questions){
