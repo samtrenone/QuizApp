@@ -247,6 +247,7 @@ function setControls(quizOn) {
     controlElements.quizPrevious.disabled = quizOn ? true : !Quiz.checkForUnfinishedQuiz();
     controlElements.endQuiz.disabled = !quizOn;
     controlElements.showIndex.disabled = !quizOn;
+    if (!quizOn) controlElements.showIndex.textContent = 'Show index'
 }
 
 function selectAnswer(e) {
