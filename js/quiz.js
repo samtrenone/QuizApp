@@ -155,6 +155,8 @@ class Quiz {
     </div>
     <div class="index-overlay"></div>
     <div class="index"></div>
+    <div class="modal-overlay"></div>
+    <div class="modal"></div>
 `;
     }
 
