@@ -155,8 +155,6 @@ class Quiz {
     </div>
     <div class="index-overlay"></div>
     <div class="index"></div>
-    <div class="modal-overlay"></div>
-    <div class="modal"></div>
 `;
     }
 
@@ -180,9 +178,7 @@ class Quiz {
             prev: document.querySelector('.quiz__prev'),
             showResults: document.querySelector('.quiz__show-results'),
             indexOverlay: document.querySelector('.index-overlay'),
-            index: document.querySelector('.index'),
-            modalOverlay: document.querySelector('.modal-overlay'),
-            modal: document.querySelector('.modal')
+            index: document.querySelector('.index')
         }
     }
 

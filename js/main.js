@@ -6,7 +6,9 @@ const controlElements = {
     quizSimulation: document.querySelector('.quizSimulation'),
     quizAll: document.querySelector('.quizAll'),
     quizPrevious: document.querySelector('.quizPrevious'),
-    endQuiz: document.querySelector('.endQuiz')
+    endQuiz: document.querySelector('.endQuiz'),
+    modalOverlay: document.querySelector('.modal-overlay'),
+    modal: document.querySelector('.modal')
 }
 setControls(false); //Sets the initial state of the controls
 
@@ -24,6 +26,7 @@ function endQuiz() {
 }
 
 function launchQuiz10() {
+    toggleModal();
     launchQuiz(getRandomQuestions(10));
 }
 
