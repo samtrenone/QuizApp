@@ -51,8 +51,9 @@ function getRandomQuestions(number = dataQuestions.length) {
 
     initDataHistory();
 
-    let result = [...dataQuestions];
-    shuffleArray(result);
+    let result = applyShowParams(dataQuestions);
+
+    result = setUnansweredFirst(result);
 
     if (number >= result.length) return result;
     
@@ -65,13 +66,47 @@ function getRandomQuestionsDomain(number, domain='') {
 
     initDataHistory();
 
-    let dataQuestionsLocal = [...dataQuestions];
+    let dataQuestionsLocal = applyShowParams(dataQuestions);
 
     if (domain != '') dataQuestionsLocal = dataQuestionsLocal.filter(el => el.domain==domain);
     
-    shuffleArray(dataQuestionsLocal);
-
     if (number >= dataQuestionsLocal.length) return dataQuestionsLocal;
     
     return dataQuestionsLocal.slice(0, number);
+}
+
+//reorders the array so the unanswered question go first
+function setUnansweredFirst(questions){
+    let result = [...questions];
+
+    result.sort((a,b)=>{
+        if (a.history.result === b.history.result)
+            return 0; //doesnt change order
+        else if(a.history.result === 'unanswered')
+            return -1; //a is 'unanswered' so put it first
+        else if(b.history.result === 'unanswered')
+            return 1;  //b is 'unanswered' so put it first
+    });
+    return result;
+}
+
+function applyShowParams(questions){
+    let result = [...questions];
+
+    if(showParams.shuffle) shuffleArray(result);
+
+    if(!showParams.wrong) result = result.filter(el2 => el2.history.result !== 'wrong');
+    if(!showParams.right) result = result.filter(el2 => el2.history.result !== 'right');
+    if(!showParams.unanswered) result = result.filter(el2 => el2.history.result !== 'unanswered');
+    if(!showParams.unmarked) result = result.filter(el2 => el2.history.marked);
+    
+    showParams.sources.forEach((sourceParam,index) => {
+        if(!sourceParam) result = result.filter(el2 => !el2.source.includes(dataSources[index].title));
+    });
+    
+    showParams.domains.forEach((domainParam,index) => {
+        if(!domainParam) result = result.filter(el2 => el2.domain != dataDomains[index].title);
+    });
+
+    return result;
 }

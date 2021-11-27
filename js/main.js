@@ -44,7 +44,8 @@ Information Security Incident Management (25 preguntas)
         getRandomQuestionsDomain(dataDomains[2].default, dataDomains[2].title),
         getRandomQuestionsDomain(dataDomains[3].default, dataDomains[3].title)
     );
-    shuffleArray(questions);
+    if(showParams.shuffle) shuffleArray(questions);
+    questions = setUnansweredFirst(questions); //cant be applied to each of the domains individually
     launchQuiz(questions);
 }
 
