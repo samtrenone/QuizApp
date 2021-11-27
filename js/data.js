@@ -91,9 +91,14 @@ function setUnansweredFirst(questions){
 }
 
 function applyShowParams(questions){
-    let result = [...dataQuestions];
+    let result = [...questions];
 
     if(showParams.shuffle) shuffleArray(result);
+
+    if(!showParams.wrong) result = result.filter(el2 => el2.history.result !== 'wrong');
+    if(!showParams.right) result = result.filter(el2 => el2.history.result !== 'right');
+    if(!showParams.unanswered) result = result.filter(el2 => el2.history.result !== 'unanswered');
+    if(!showParams.unmarked) result = result.filter(el2 => el2.history.marked);
     
     showParams.sources.forEach((sourceParam,index) => {
         if(!sourceParam) result = result.filter(el2 => !el2.source.includes(dataSources[index].title));
