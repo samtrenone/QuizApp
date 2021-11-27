@@ -180,7 +180,9 @@ class Quiz {
             prev: document.querySelector('.quiz__prev'),
             showResults: document.querySelector('.quiz__show-results'),
             indexOverlay: document.querySelector('.index-overlay'),
-            index: document.querySelector('.index')
+            index: document.querySelector('.index'),
+            modalOverlay: document.querySelector('.modal-overlay'),
+            modal: document.querySelector('.modal')
         }
     }
 
