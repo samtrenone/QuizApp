@@ -66,14 +66,10 @@ function getRandomQuestionsDomain(number, domain='') {
 
     initDataHistory();
 
-    let dataQuestionsLocal = [...dataQuestions];
+    let dataQuestionsLocal = applyShowParams(dataQuestions);
 
     if (domain != '') dataQuestionsLocal = dataQuestionsLocal.filter(el => el.domain==domain);
     
-    if(showParams.shuffle){
-        shuffleArray(dataQuestionsLocal);
-    }
-
     if (number >= dataQuestionsLocal.length) return dataQuestionsLocal;
     
     return dataQuestionsLocal.slice(0, number);
