@@ -8,7 +8,7 @@ const controlElements = {
     quizPrevious: document.querySelector('.quizPrevious'),
     endQuiz: document.querySelector('.endQuiz'),
     modalOverlay: document.querySelector('.modal-overlay'),
-    modal: document.querySelector('.modal')
+    modal: document.querySelector('.modal-content')
 }
 setControls(false); //Sets the initial state of the controls
 
