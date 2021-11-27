@@ -6,9 +6,7 @@ const controlElements = {
     quizSimulation: document.querySelector('.quizSimulation'),
     quizAll: document.querySelector('.quizAll'),
     quizPrevious: document.querySelector('.quizPrevious'),
-    endQuiz: document.querySelector('.endQuiz'),
-    modalOverlay: document.querySelector('.modal-overlay'),
-    modal: document.querySelector('.modal-content')
+    endQuiz: document.querySelector('.endQuiz')
 }
 setControls(false); //Sets the initial state of the controls
 
