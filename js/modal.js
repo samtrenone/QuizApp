@@ -5,17 +5,66 @@
     //     <div class="modal-overlay"></div>
     //     <div class="modal-content"></div>
     // </div>
-    newDivModal = document.createElement('div');
+    let newDivModal = document.createElement('div');
     newDivModal.classList.add('modal');
 
-    newDivModalOverlay = document.createElement('div');
+    let newDivModalOverlay = document.createElement('div');
     newDivModalOverlay.classList.add('modal-overlay');
     newDivModalOverlay.addEventListener('click', toggleModal);
 
-    newDivModalContent = document.createElement('div');
+    let newDivModalContent = document.createElement('div');
     newDivModalContent.classList.add('modal-content');
 
+    let newFormModal = document.createElement('form');
 
+    let newLabelCheck;
+    let newInputCheck;
+
+    //wrong questions
+    newInputCheck = document.createElement('input');
+    newInputCheck.type = 'checkbox';
+    newInputCheck.id = 'chkShowWrong';
+    newInputCheck.name = 'chkShowWrong';
+    newInputCheck.checked = showParams.wrong;
+
+    newLabelCheck = document.createElement('label');
+    newLabelCheck.htmlFor = 'chkShowWrong';
+    newLabelCheck.appendChild(newInputCheck);
+    newLabelCheck.appendChild(document.createTextNode('Show wrong answered questions'));
+
+    newFormModal.appendChild(newLabelCheck);
+
+    //right questions
+    newInputCheck = document.createElement('input');
+    newInputCheck.type = 'checkbox';
+    newInputCheck.id = 'chkShowRight';
+    newInputCheck.name = 'chkShowRight';
+    newInputCheck.checked = showParams.right;
+
+    newLabelCheck = document.createElement('label');
+    newLabelCheck.htmlFor = 'chkShowRight';
+    newLabelCheck.appendChild(newInputCheck);
+    newLabelCheck.appendChild(document.createTextNode('Show right answered questions'));
+
+    newFormModal.appendChild(newLabelCheck);
+
+    //unanswered questions
+    newInputCheck = document.createElement('input');
+    newInputCheck.type = 'checkbox';
+    newInputCheck.id = 'chkShowUnasnwered';
+    newInputCheck.name = 'chkShowUnasnwered';
+    newInputCheck.checked = showParams.unanswered;
+
+    newLabelCheck = document.createElement('label');
+    newLabelCheck.htmlFor = 'chkShowUnasnwered';
+    newLabelCheck.appendChild(newInputCheck);
+    newLabelCheck.appendChild(document.createTextNode('Show unanswered questions'));
+
+    newFormModal.appendChild(newLabelCheck);
+
+
+
+    newDivModalContent.appendChild(newFormModal);
 
     newDivModal.appendChild(newDivModalOverlay);
     newDivModal.appendChild(newDivModalContent);
