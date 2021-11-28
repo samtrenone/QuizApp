@@ -13,20 +13,36 @@
         z-index: 2;
         pointer-events: none;
         opacity: 0;
-        padding: 2em;
+        padding: 1.5em 2em 1em;
         background-color: $background;
         transition: opacity 400ms ease-in-out;
+        border-radius: .4em;
 
         &--show{
             opacity: 1;
             pointer-events: auto;
         }
 
-        form {
+        &-form {
             display: flex;
             flex-direction: column;
+
+            fieldset{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1em;
+                border-radius: .2em;
+            }
+
+            input[type='submit']{
+                align-self: center;
+                padding: 0.5em 2em;
+                
+            }
         }
     }
+
+    
 
     &-overlay{
         z-index: 1;
