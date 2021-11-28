@@ -1,3 +1,24 @@
+let showParams = {
+    shuffle : false,
+    wrong : true,
+    right : true,
+    unanswered : true,
+    unmarked : true,
+    domains : [true,true,true,true],
+    sources : [true,true]
+};
+
+function saveShowParams(){
+    localStorage.setItem('showParams', JSON.stringify(showParams));
+}
+
+(function loadShowParams(){
+    const storage = JSON.parse(localStorage.getItem('showParams'));
+    if (storage) {
+        showParams = storage;
+    }
+})();
+
 //iif to create the modal box
 (function createModal(){
     //this.root.innerHTML
@@ -19,6 +40,22 @@
 
     let newLabelCheck;
     let newInputCheck;
+
+    //sources
+    showParams.sources.forEach((source,index) =>{
+        newInputCheck = document.createElement('input');
+        newInputCheck.type = 'checkbox';
+        newInputCheck.id = 'chkShowSource' + index;
+        newInputCheck.name = 'chkShowSource' + index;
+        newInputCheck.checked = source;
+    
+        newLabelCheck = document.createElement('label');
+        newLabelCheck.htmlFor = 'chkShowSource' + index;
+        newLabelCheck.appendChild(newInputCheck);
+        newLabelCheck.appendChild(document.createTextNode('Show source: ' + dataSources[index].title));
+    
+        newFormModal.appendChild(newLabelCheck);
+    });
 
     //wrong questions
     newInputCheck = document.createElement('input');
@@ -62,7 +99,44 @@
 
     newFormModal.appendChild(newLabelCheck);
 
+    //domains
+    showParams.domains.forEach((domain,index) =>{
+        newInputCheck = document.createElement('input');
+        newInputCheck.type = 'checkbox';
+        newInputCheck.id = 'chkShowDomain' + index;
+        newInputCheck.name = 'chkShowDomain' + index;
+        newInputCheck.checked = domain;
+    
+        newLabelCheck = document.createElement('label');
+        newLabelCheck.htmlFor = 'chkShowDomain' + index;
+        newLabelCheck.appendChild(newInputCheck);
+        newLabelCheck.appendChild(document.createTextNode('Show Domain: ' + dataDomains[index].title));
+    
+        newFormModal.appendChild(newLabelCheck);
+    });
 
+    //submit button
+    let newSubmit = document.createElement('input');
+    newSubmit.type = 'submit';
+    newSubmit.value = 'Ok'
+    newFormModal.appendChild(newSubmit);
+
+    newFormModal.addEventListener('submit',e =>{
+        e.preventDefault();
+
+        showParams.sources.forEach((source,index) =>{
+            showParams.sources[index] = newFormModal.elements['chkShowSource' + index].checked;    
+        });
+        showParams.wrong = newFormModal.elements['chkShowWrong'].checked;
+        showParams.right = newFormModal.elements['chkShowRight'].checked;
+        showParams.unanswered = newFormModal.elements['chkShowUnasnwered'].checked;
+        showParams.domains.forEach((source,index) =>{
+            showParams.domains[index] = newFormModal.elements['chkShowDomain' + index].checked;    
+        });
+
+        saveShowParams();
+        toggleModal();
+    });
 
     newDivModalContent.appendChild(newFormModal);
 
@@ -70,20 +144,6 @@
     newDivModal.appendChild(newDivModalContent);
 
     document.body.appendChild(newDivModal);
-
-
-
-
-    // quiz.questions.forEach(question => {
-    //     let dataQuestion = getDataQuestion(question.id);
-
-    //     newLi = document.createElement('li');
-    //     newLi.classList.add('index__question');
-    //     newLi.setAttribute('data-index-id', question.id);
-    //     newLi.innerHTML = `<i class="fa fa-bookmark mark"></i>${dataQuestion.question}`;
-    //     newUl.appendChild(newLi);
-    // });
-    // quiz.elements.index.appendChild(newUl);
 })();
 
 function toggleModal() {
