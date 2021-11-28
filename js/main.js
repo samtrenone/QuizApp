@@ -2,6 +2,7 @@ let quiz;
 
 const controlElements = {
     showIndex: document.querySelector('.showIndex'),
+    options: document.querySelector('.options'),
     quiz10: document.querySelector('.quiz10'),
     quizSimulation: document.querySelector('.quizSimulation'),
     quizAll: document.querySelector('.quizAll'),
@@ -11,11 +12,16 @@ const controlElements = {
 setControls(false); //Sets the initial state of the controls
 
 controlElements.showIndex.addEventListener('click', toggleIndex);
+controlElements.options.addEventListener('click', options);
 controlElements.quiz10.addEventListener('click', launchQuiz10);
 controlElements.quizSimulation.addEventListener('click', launchQuizSimulation);
 controlElements.quizAll.addEventListener('click', launchQuizAll);
 controlElements.quizPrevious.addEventListener('click', launchQuizPrevious);
 controlElements.endQuiz.addEventListener('click', endQuiz);
+
+function options() {
+    toggleModal();
+}
 
 function endQuiz() {
     quiz.end();
@@ -27,17 +33,7 @@ function launchQuiz10() {
     launchQuiz(getRandomQuestions(10));
 }
 
-function launchQuiz150() {
-    launchQuiz(getRandomQuestions(150));
-}
-
 function launchQuizSimulation() {
-    /*
-Information Security Governance (25 preguntas)
-Information Security Program Development and Management (70 preguntas)
-Information Risk Management (30 preguntas)
-Information Security Incident Management (25 preguntas)
-*/
     let questions = mergeArrays(
         getRandomQuestionsDomain(dataDomains[0].default, dataDomains[0].title),
         getRandomQuestionsDomain(dataDomains[1].default, dataDomains[1].title),
@@ -242,6 +238,7 @@ function renderMarked() {
 
 //enables/disables the controls to start and end a quiz
 function setControls(quizOn) {
+    controlElements.options.disabled = quizOn;
     controlElements.quiz10.disabled = quizOn;
     controlElements.quizSimulation.disabled = quizOn;
     controlElements.quizAll.disabled = quizOn;

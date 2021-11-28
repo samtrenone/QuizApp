@@ -46,7 +46,7 @@ class Quiz {
             currentIndex: this.currentIndex,
             start: this.start,
             totalSeconds: this.totalSeconds,
-            showResults: this.showResults,
+            showResults: this.showResults
         }));
     }
     clearStorage() {
