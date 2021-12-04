@@ -1,4 +1,8 @@
 .general__report{
+    &-right, &-wrong{
+        font-size: 0.8rem;
+        margin-left: 1em;
+    }
     &-right{
         color: $right--contrast;
     }
