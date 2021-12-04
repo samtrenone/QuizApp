@@ -74,27 +74,35 @@ function getNumberQuestionsWrong(){
     return dataQuestions.filter(el => el.history.result=='wrong').length;
 }
 function getNumberQuestionsBySource(source){
-    return dataQuestions.filter(el => el.source==source).length;
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).length;
 }
-function getNumberQuestionsBySourceAnswered(Source){
-    return dataQuestions.filter(el => el.Source==Source).filter(el => el.history.result!='unanswered').length;
+function getNumberQuestionsBySourceAnswered(source){
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.history.result!='unanswered').length;
 }
 function getNumberQuestionsBySourceRight(source){
-    return dataQuestions.filter(el => el.source==source).filter(el => el.history.result=='right').length;
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.history.result=='right').length;
 }
 function getNumberQuestionsBySourceWrong(source){
-    return dataQuestions.filter(el => el.source==source).filter(el => el.history.result=='wrong').length;
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.history.result=='wrong').length;
 }
 function getNumberQuestionsByDomain(domain){
+    domain = dataDomains[domain].title;
     return dataQuestions.filter(el => el.domain==domain).length;
 }
 function getNumberQuestionsByDomainAnswered(domain){
+    domain = dataDomains[domain].title;
     return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result!='unanswered').length;
 }
 function getNumberQuestionsByDomainRight(domain){
+    domain = dataDomains[domain].title;
     return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result=='right').length;
 }
 function getNumberQuestionsByDomainWrong(domain){
+    domain = dataDomains[domain].title;
     return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result=='wrong').length;
 }
 function getRandomQuestionsDomain(domain) {
