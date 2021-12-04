@@ -1,0 +1,8 @@
+.general__report{
+    &-right{
+        color: $right--contrast;
+    }
+    &-wrong{
+        color: $wrong--contrast;
+    }
+}

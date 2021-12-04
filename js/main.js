@@ -35,10 +35,10 @@ function launchQuiz10() {
 
 function launchQuizSimulation() {
     let questions = mergeArrays(
-        getRandomQuestionsDomain(dataDomains[0].default, dataDomains[0].title),
-        getRandomQuestionsDomain(dataDomains[1].default, dataDomains[1].title),
-        getRandomQuestionsDomain(dataDomains[2].default, dataDomains[2].title),
-        getRandomQuestionsDomain(dataDomains[3].default, dataDomains[3].title)
+        getRandomQuestionsDomain(0),
+        getRandomQuestionsDomain(1),
+        getRandomQuestionsDomain(2),
+        getRandomQuestionsDomain(3)
     );
     if(showParams.shuffle) shuffleArray(questions);
     questions = setUnansweredFirst(questions); //cant be applied to each of the domains individually

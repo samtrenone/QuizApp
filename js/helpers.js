@@ -21,3 +21,10 @@ function clearElementChildren(element) {
         element.removeChild(element.firstChild);
     }
 }
+
+/* To unify the calculation and format of percentages */
+function getPercentage(value,total) {
+    if(value==0 || total==0) return 0;
+    let result = value * 100 / total;
+    return result.toFixed(2);
+}

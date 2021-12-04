@@ -255,6 +255,7 @@ class Quiz {
     }
     getPercentageRight() {
         let result = this.getTotalRight() * 100 / this.getTotalQuestions();
+        if(result==0) return 0;
         return result.toFixed(2);
     }
 
@@ -263,6 +264,7 @@ class Quiz {
     }
     getPercentageWrong() {
         let result = this.getTotalWrong() * 100 / this.getTotalQuestions();
+        if(result==0) return 0;
         return result.toFixed(2);
     }
 
@@ -281,7 +283,7 @@ class Quiz {
     }
     getPercentageRightByDomain(domainIndex) {
         let total = this.getTotalQuestionsByDomain(domainIndex);
-        if (total==0) return 0.00;
+        if (total==0) return 0;
         let result = this.getTotalRightByDomain(domainIndex) * 100 / total;
         return result.toFixed(2);
     }
@@ -291,7 +293,7 @@ class Quiz {
     }
     getPercentageWrongByDomain(domainIndex) {
         let total = this.getTotalQuestionsByDomain(domainIndex);
-        if (total==0) return 0.00;
+        if (total==0) return 0;
         let result = this.getTotalWrongByDomain(domainIndex) * 100 / total;
         return result.toFixed(2);
     }
