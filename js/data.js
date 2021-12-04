@@ -97,17 +97,17 @@ function getNumberQuestionsByDomainRight(domain){
 function getNumberQuestionsByDomainWrong(domain){
     return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result=='wrong').length;
 }
-function getRandomQuestionsDomain(number, domain='') {
+function getRandomQuestionsDomain(domain) {
 
     initDataHistory(); //to update the historic values any time a new quiz begins
 
     let dataQuestionsLocal = applyShowParams(dataQuestions);
 
-    if (domain != '') dataQuestionsLocal = dataQuestionsLocal.filter(el => el.domain==domain);
+    dataQuestionsLocal = dataQuestionsLocal.filter(el => el.domain==dataDomains[domain].title);
     
-    if (number >= dataQuestionsLocal.length) return dataQuestionsLocal;
+    if (dataDomains[domain].default >= dataQuestionsLocal.length) return dataQuestionsLocal;
     
-    return dataQuestionsLocal.slice(0, number);
+    return dataQuestionsLocal.slice(0, dataDomains[domain].default);
 }
 
 //reorders the array so the unanswered question go first
