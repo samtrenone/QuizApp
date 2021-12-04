@@ -42,6 +42,27 @@ function renderQuizReport(){
 }
 
 function renderQuizReportQuestions() {
+    let newDivFilter = document.createElement('div');
+    newDivFilter.classList.add('quiz__report-filter');
+    newDivFilter.innerHTML = `
+    <label for="filterAll">
+        <input type="radio" name="filter" id="filterAll" value="all" checked></input>
+        All
+    </label>
+    <label for="filterMarked">
+        <input type="radio" name="filter" id="filterMarked" value="all"></input>
+        Marked
+    </label>
+    <label for="filterWrong">
+        <input type="radio" name="filter" id="filterWrong" value="all"></input>
+        Wrong
+    </label>
+    <label for="filterRight">
+        <input type="radio" name="filter" id="filterRight" value="all"></input>
+        Right
+    </label>
+    `;
+
     let newDiv = document.createElement('div');
     newDiv.classList.add('quiz__report-index');
     
@@ -82,6 +103,7 @@ function renderQuizReportQuestions() {
         newUl.appendChild(newLi);
     });
 
+    newDiv.appendChild(newDivFilter);
     newDiv.appendChild(newUl);
     quiz.root.appendChild(newDiv);
 }
