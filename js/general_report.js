@@ -30,5 +30,5 @@
     // </div>
     // `;
 
-    quiz.appendChild(newDivTotals);
+    document.querySelector('.quiz').appendChild(newDivTotals);
 })();
