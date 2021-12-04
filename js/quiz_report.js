@@ -41,9 +41,20 @@ function renderQuizReport(){
     renderQuizReportQuestions()
 }
 
+function filterQuestionsReport(e) {
+
+    if (e.target.matches('label')) {
+        let questions = document.getElementsByClassName('.quiz__report-question');
+        Array.from(questions).forEach(el=>{
+            el.classList.toggle('hide');
+        });
+    }
+}
+
 function renderQuizReportQuestions() {
     let newDivFilter = document.createElement('div');
     newDivFilter.classList.add('quiz__report-filter');
+    newDivFilter.addEventListener('click',filterQuestionsReport);
     newDivFilter.innerHTML = `
     <label for="filterAll">
         <input type="radio" name="filter" id="filterAll" value="all" checked></input>
