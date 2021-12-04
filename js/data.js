@@ -76,6 +76,9 @@ function getNumberQuestionsWrong(){
 function getNumberQuestionsBySource(source){
     return dataQuestions.filter(el => el.source==source).length;
 }
+function getNumberQuestionsBySourceAnswered(Source){
+    return dataQuestions.filter(el => el.Source==Source).filter(el => el.history.result!='unanswered').length;
+}
 function getNumberQuestionsBySourceRight(source){
     return dataQuestions.filter(el => el.source==source).filter(el => el.history.result=='right').length;
 }
@@ -84,6 +87,9 @@ function getNumberQuestionsBySourceWrong(source){
 }
 function getNumberQuestionsByDomain(domain){
     return dataQuestions.filter(el => el.domain==domain).length;
+}
+function getNumberQuestionsByDomainAnswered(domain){
+    return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result!='unanswered').length;
 }
 function getNumberQuestionsByDomainRight(domain){
     return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result=='right').length;
