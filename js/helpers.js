@@ -21,3 +21,9 @@ function clearElementChildren(element) {
         element.removeChild(element.firstChild);
     }
 }
+
+/* To unify the calculation and format of percentages */
+function getPercentage(value,total) {
+    let result = value * 100 / total;
+    return result.toFixed(2);
+}

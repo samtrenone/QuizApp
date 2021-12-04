@@ -38,6 +38,8 @@ function initDataHistory(){ //to recall any historic data
     }
 }
 
+initDataHistory(); //to use the historic values in the initial report
+
 function getDataQuestion(id) {
     return dataQuestions.find(el => el.id == id);
 }
@@ -49,7 +51,7 @@ function getDataQuestionRightAnswer(dataQuestion) {
 }
 function getRandomQuestions(number = dataQuestions.length) {
 
-    initDataHistory();
+    initDataHistory(); //to update the historic values any time a new quiz begins
 
     let result = applyShowParams(dataQuestions);
 
@@ -59,12 +61,39 @@ function getRandomQuestions(number = dataQuestions.length) {
     
     return result.slice(0, number);
 }
+function getNumberQuestions(){
+    return dataQuestions.length;
+}
+function getNumberQuestionsAnswered(){
+    return dataQuestions.filter(el => el.history.result!='unanswered').length;
+}
+function getNumberQuestionsRight(){
+    return dataQuestions.filter(el => el.history.result=='right').length;
+}
+function getNumberQuestionsWrong(){
+    return dataQuestions.filter(el => el.history.result=='wrong').length;
+}
+function getNumberQuestionsBySource(source){
+    return dataQuestions.filter(el => el.source==source).length;
+}
+function getNumberQuestionsBySourceRight(source){
+    return dataQuestions.filter(el => el.source==source).filter(el => el.history.result=='right').length;
+}
+function getNumberQuestionsBySourceWrong(source){
+    return dataQuestions.filter(el => el.source==source).filter(el => el.history.result=='wrong').length;
+}
 function getNumberQuestionsByDomain(domain){
     return dataQuestions.filter(el => el.domain==domain).length;
 }
+function getNumberQuestionsByDomainRight(domain){
+    return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result=='right').length;
+}
+function getNumberQuestionsByDomainWrong(domain){
+    return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result=='wrong').length;
+}
 function getRandomQuestionsDomain(number, domain='') {
 
-    initDataHistory();
+    initDataHistory(); //to update the historic values any time a new quiz begins
 
     let dataQuestionsLocal = applyShowParams(dataQuestions);
 
