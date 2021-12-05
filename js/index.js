@@ -12,6 +12,25 @@ function initIndex(){
 }
 
 function renderIndex() {
+    let newDivFilter = document.createElement('div');
+    newDivFilter.classList.add('index-filter');
+    newDivFilter.addEventListener('click',filterQuestionsIndex);
+    newDivFilter.innerHTML = `
+    <label for="filterAll">
+        <input type="radio" name="filter" id="filterAll" value="all" checked></input>
+        All
+    </label>
+    <label for="filterMarked">
+        <input type="radio" name="filter" id="filterMarked" value="marked"></input>
+        Marked
+    </label>
+    <label for="filterUnanswered">
+        <input type="radio" name="filter" id="filterUnanswered" value="unanswered"></input>
+        Unanswered
+    </label>
+    `;
+    quiz.elements.index.appendChild(newDivFilter);
+
     newUl = document.createElement('ul');
     quiz.questions.forEach(question => {
         let dataQuestion = getDataQuestion(question.id);

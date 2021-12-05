@@ -33,6 +33,14 @@
         transform: translateX(0);
     }
 
+    &-filter{
+        font-size: 0.8rem;
+        text-align: center;
+        > label{
+            padding:1em;
+        }
+    }
+
     & ul{
         list-style: none;
         padding-left: 50px;
