@@ -43,8 +43,8 @@ function renderQuizReport(){
 
 function filterQuestionsReport(e) {
 
-    if (e.target.matches('label')) {
-        let questions = document.getElementsByClassName('.quiz__report-question');
+    if (e.target.matches('input')) {
+        let questions = document.getElementsByClassName('quiz__report-question');
         Array.from(questions).forEach(el=>{
             el.classList.toggle('hide');
         });
@@ -83,9 +83,18 @@ function renderQuizReportQuestions() {
 
         newLi = document.createElement('li');
         newLi.classList.add('quiz__report-question');
-        if (question.marked) newLi.classList.add('quiz__report-question--marked');
-        if (question.result == 'right') newLi.classList.add('quiz__report-question--right');
-        if (question.result == 'wrong') newLi.classList.add('quiz__report-question--wrong');
+        if (question.marked) {
+            newLi.classList.add('quiz__report-question--marked');
+            newLi.setAttribute('data-marked',true);
+        }
+        if (question.result == 'right') {
+            newLi.classList.add('quiz__report-question--right');
+            newLi.setAttribute('data-result','right');
+        }
+        if (question.result == 'wrong') {
+            newLi.classList.add('quiz__report-question--wrong');
+            newLi.setAttribute('data-result','wrong');
+        }
 
         newLi.addEventListener('click', function(){
             this.querySelector('.quiz__report-panel').classList.toggle('quiz__report-panel--show');
