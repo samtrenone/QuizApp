@@ -32,7 +32,6 @@
     &-question{
         background-color: #fdfdfd;
         position: relative;
-        counter-increment: steps2;
         padding: 1.2em 1.5em;
         font-size: 0.8rem;
         margin-bottom: 1em;
@@ -41,10 +40,11 @@
         box-shadow: 0 0 0 1px $shadow;
         cursor: pointer;
         
-        &::before {
+        &-index{
             position: absolute;
             left: -30px;
-            content: counter(steps2) ".";
+            top: 15px;
+            margin:0;
         }
 
         .mark{

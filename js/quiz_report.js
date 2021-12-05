@@ -45,7 +45,7 @@ function filterQuestionsReport(e) {
 
     if (e.target.matches('input')) {
         let questions = Array.from(document.getElementsByClassName('quiz__report-question'));
-        
+
         questions.forEach(el => el.classList.remove('hide'));
 
         switch(e.target.value){
@@ -89,10 +89,10 @@ function renderQuizReportQuestions() {
     newDiv.classList.add('quiz__report-index');
     
     let newUl = document.createElement('ul');
-    quiz.questions.forEach(question => {
+    quiz.questions.forEach((question,index) => {
         let dataQuestion = getDataQuestion(question.id);
 
-        newLi = document.createElement('li');
+        let newLi = document.createElement('li');
         newLi.classList.add('quiz__report-question');
         if (question.marked) {
             newLi.classList.add('quiz__report-question--marked');
@@ -112,7 +112,7 @@ function renderQuizReportQuestions() {
         });
 
         let newUlAnswers = document.createElement('ul');
-        dataQuestion.answers.forEach( answer => {
+        dataQuestion.answers.forEach(answer => {
             let newLiAnswer = document.createElement('li');
             if(answer.correct){
                 newLiAnswer.classList.add('quiz__report-answer--right');
@@ -125,7 +125,8 @@ function renderQuizReportQuestions() {
             newUlAnswers.appendChild(newLiAnswer)
         });
 
-        newLi.innerHTML = `<i class="fa fa-bookmark mark"></i><p>${dataQuestion.question}</p>
+        newLi.innerHTML = `<i class="fa fa-bookmark mark"></i><p class="quiz__report-question-index">${index+1}</p>
+        <p>${dataQuestion.question}</p>
         <div class="quiz__report-panel">
         ${newUlAnswers.outerHTML}
         <p class="quiz__report-explanation">${dataQuestion.explanation}</p>
