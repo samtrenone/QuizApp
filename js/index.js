@@ -11,6 +11,24 @@ function initIndex(){
     enableIndexEvents();
 }
 
+function filterQuestionsIndex(e) {
+
+    if (e.target.matches('input')) {
+        let questions = Array.from(document.getElementsByClassName('index__question'));
+
+        questions.forEach(el => el.classList.remove('hide'));
+
+        switch(e.target.value){
+            case 'marked':
+                questions.filter(el => !el.dataset.marked).forEach(el => el.classList.add('hide'));
+                break;
+            case 'unanswered':
+                questions.filter(el => el.dataset.result != 'unanswered').forEach(el => el.classList.add('hide'));
+                break;
+        }
+    }
+}
+
 function renderIndex() {
     let newDivFilter = document.createElement('div');
     newDivFilter.classList.add('index-filter');
@@ -55,8 +73,21 @@ function updateAnsweredClassesIndex(id) {
     let quizQuestion = quiz.getQuestion(id);
     let questionEl = quiz.elements.index.querySelector(`[data-index-id="${id}"]`);
 
-    quizQuestion.answered ? questionEl.classList.add('index__question--answered') : questionEl.classList.remove('index__question--answered');
-    quizQuestion.marked ? questionEl.classList.add('index__question--marked') : questionEl.classList.remove('index__question--marked');
+    if(quizQuestion.answered){
+        questionEl.classList.add('index__question--answered');
+        questionEl.setAttribute('data-answered',true);
+    } else {
+        questionEl.classList.remove('index__question--answered');
+        questionEl.setAttribute('data-answered',false);
+    }
+
+    if(quizQuestion.marked){
+        questionEl.classList.add('index__question--marked');
+        questionEl.setAttribute('data-marked',true);
+    } else { 
+        questionEl.classList.remove('index__question--marked');
+        questionEl.setAttribute('data-marked',false);
+    }
 
     questionEl.classList.remove('index__question--right');
     questionEl.classList.remove('index__question--wrong');
@@ -69,7 +100,13 @@ function updateAnsweredClassesIndex(id) {
 function updateIndexMarked(id) {
     let quizQuestion = quiz.getQuestion(id);
     let questionEl = quiz.elements.index.querySelector(`[data-index-id="${id}"]`);
-    quizQuestion.marked ? questionEl.classList.add('index__question--marked') : questionEl.classList.remove('index__question--marked');
+    if(quizQuestion.marked){
+        questionEl.classList.add('index__question--marked');
+        questionEl.setAttribute('data-marked',true);
+    } else { 
+        questionEl.classList.remove('index__question--marked');
+        questionEl.setAttribute('data-marked',false);
+    }
 }
 
 function updateIndexCurrent() {
