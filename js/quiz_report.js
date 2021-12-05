@@ -44,10 +44,21 @@ function renderQuizReport(){
 function filterQuestionsReport(e) {
 
     if (e.target.matches('input')) {
-        let questions = document.getElementsByClassName('quiz__report-question');
-        Array.from(questions).forEach(el=>{
-            el.classList.toggle('hide');
-        });
+        let questions = Array.from(document.getElementsByClassName('quiz__report-question'));
+        
+        questions.forEach(el => el.classList.remove('hide'));
+
+        switch(e.target.value){
+            case 'marked':
+                questions.filter(el => !el.dataset.marked).forEach(el => el.classList.add('hide'));
+                break;
+            case 'right':
+                questions.filter(el => el.dataset.result != 'right').forEach(el => el.classList.add('hide'));
+                break;
+            case 'wrong':
+                questions.filter(el => el.dataset.result != 'wrong').forEach(el => el.classList.add('hide'));
+                break;
+        }
     }
 }
 
@@ -61,15 +72,15 @@ function renderQuizReportQuestions() {
         All
     </label>
     <label for="filterMarked">
-        <input type="radio" name="filter" id="filterMarked" value="all"></input>
+        <input type="radio" name="filter" id="filterMarked" value="marked"></input>
         Marked
     </label>
     <label for="filterWrong">
-        <input type="radio" name="filter" id="filterWrong" value="all"></input>
+        <input type="radio" name="filter" id="filterWrong" value="wrong"></input>
         Wrong
     </label>
     <label for="filterRight">
-        <input type="radio" name="filter" id="filterRight" value="all"></input>
+        <input type="radio" name="filter" id="filterRight" value="right"></input>
         Right
     </label>
     `;
