@@ -1,39 +1,24 @@
 function renderQuizReport(){
     let newDivTotals = document.createElement('div');
     newDivTotals.classList.add('quiz__report-totals');
-    newDivTotals.innerHTML = `<p>Total time: <span class="time"></span></p>
+    let quizReportContent = `<p>Total time: <span class="time"></span></p>
     <div class="quiz__report-results">
     <p>
         <span class="quiz__report-answered">Total answered: ${quiz.getTotalAnswered()} of ${quiz.getTotalQuestions()}</span>
-        <span class="quiz__report-right">Right: ${quiz.getTotalRight()} / ${quiz.getPercentageRight()}%</span>
-        <span class="quiz__report-wrong">Wrong: ${quiz.getTotalWrong()} / ${quiz.getPercentageWrong()}%</span>
+        <span class="quiz__report-right">${quiz.getTotalRight()} / ${quiz.getPercentageRight()}%</span>
+        <span class="quiz__report-wrong">${quiz.getTotalWrong()} / ${quiz.getPercentageWrong()}%</span>
     </p>
-    <br/>
-    <p>
-        <span class="quiz__report-answered">${dataDomains[0].title}: ${quiz.getTotalAnsweredByDomain(0)} of ${quiz.getTotalQuestionsByDomain(0)}</span>
-        <span class="quiz__report-right">Right: ${quiz.getTotalRightByDomain(0)} / ${quiz.getPercentageRightByDomain(0)}%</span>
-        <span class="quiz__report-wrong">Wrong: ${quiz.getTotalWrongByDomain(0)} / ${quiz.getPercentageWrongByDomain(0)}%</span>
-    </p>
-    <p>
-        <span class="quiz__report-answered">${dataDomains[1].title}: ${quiz.getTotalAnsweredByDomain(1)} of ${quiz.getTotalQuestionsByDomain(1)}</span>
-        <span class="quiz__report-right">Right: ${quiz.getTotalRightByDomain(1)} / ${quiz.getPercentageRightByDomain(1)}%</span>
-        <span class="quiz__report-wrong">Wrong: ${quiz.getTotalWrongByDomain(1)} / ${quiz.getPercentageWrongByDomain(1)}%</span>
-    </p>
-    <p>
-        <span class="quiz__report-answered">${dataDomains[2].title}: ${quiz.getTotalAnsweredByDomain(2)} of ${quiz.getTotalQuestionsByDomain(2)}</span>
-        <span class="quiz__report-right">Right: ${quiz.getTotalRightByDomain(2)} / ${quiz.getPercentageRightByDomain(2)}%</span>
-        <span class="quiz__report-wrong">Wrong: ${quiz.getTotalWrongByDomain(2)} / ${quiz.getPercentageWrongByDomain(2)}%</span>
-    </p>
-    <p>
-        <span class="quiz__report-answered">${dataDomains[0].title}: ${quiz.getTotalAnsweredByDomain(3)} of ${quiz.getTotalQuestionsByDomain(3)}</span>
-        <span class="quiz__report-right">Right: ${quiz.getTotalRightByDomain(3)} / ${quiz.getPercentageRightByDomain(3)}%</span>
-        <span class="quiz__report-wrong">Wrong: ${quiz.getTotalWrongByDomain(3)} / ${quiz.getPercentageWrongByDomain(3)}%</span>
-    </p>
-    </div>
-    <div class="quiz__report-results-graph">
-        <div class="quiz__report-right-graph"></div><div class="quiz__report-wrong-graph"></div><div class="quiz__report-rest-graph"></div>
-    </div>
-    `;
+    <br/>`;
+
+    for(let i=0 ; i<dataDomains.length ; i++){
+        quizReportContent += `<p>
+        <span class="quiz__report-answered">${dataDomains[i].title}: ${quiz.getTotalAnsweredByDomain(i)} of ${quiz.getTotalQuestionsByDomain(i)}</span>
+        <span class="quiz__report-right">${quiz.getTotalRightByDomain(i)} / ${quiz.getPercentageRightByDomain(i)}%</span>
+        <span class="quiz__report-wrong">${quiz.getTotalWrongByDomain(i)} / ${quiz.getPercentageWrongByDomain(i)}%</span>
+    </p>`;
+    }
+
+    newDivTotals.innerHTML = quizReportContent;
 
     quiz.root.appendChild(newDivTotals);
     
