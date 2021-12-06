@@ -50,13 +50,13 @@ function filterQuestionsReport(e) {
 
         switch(e.target.value){
             case 'marked':
-                questions.filter(el => !el.dataset.marked).forEach(el => el.classList.add('hide'));
+                questions.filter(el => el.dataset.marked !== 'true').forEach(el => el.classList.add('hide'));
                 break;
             case 'right':
-                questions.filter(el => el.dataset.result != 'right').forEach(el => el.classList.add('hide'));
+                questions.filter(el => el.dataset.result !== 'right').forEach(el => el.classList.add('hide'));
                 break;
             case 'wrong':
-                questions.filter(el => el.dataset.result != 'wrong').forEach(el => el.classList.add('hide'));
+                questions.filter(el => el.dataset.result !== 'wrong').forEach(el => el.classList.add('hide'));
                 break;
         }
     }
