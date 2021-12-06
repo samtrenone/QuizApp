@@ -73,6 +73,7 @@ function getNumberQuestionsRight(){
 function getNumberQuestionsWrong(){
     return dataQuestions.filter(el => el.history.result=='wrong').length;
 }
+
 function getNumberQuestionsBySource(source){
     source = dataSources[source].title;
     return dataQuestions.filter(el => el.source.includes(source)).length;
@@ -89,6 +90,7 @@ function getNumberQuestionsBySourceWrong(source){
     source = dataSources[source].title;
     return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.history.result=='wrong').length;
 }
+
 function getNumberQuestionsByDomain(domain){
     domain = dataDomains[domain].title;
     return dataQuestions.filter(el => el.domain==domain).length;
@@ -105,6 +107,28 @@ function getNumberQuestionsByDomainWrong(domain){
     domain = dataDomains[domain].title;
     return dataQuestions.filter(el => el.domain==domain).filter(el => el.history.result=='wrong').length;
 }
+
+function getNumberQuestionsByDomainSource(domain,source){
+    domain = dataDomains[domain].title;
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.domain==domain).length;
+}
+function getNumberQuestionsByDomainSourceAnswered(domain,source){
+    domain = dataDomains[domain].title;
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.domain==domain).filter(el => el.history.result!='unanswered').length;
+}
+function getNumberQuestionsByDomainSourceRight(domain,source){
+    domain = dataDomains[domain].title;
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.domain==domain).filter(el => el.history.result=='right').length;
+}
+function getNumberQuestionsByDomainSourceWrong(domain,source){
+    domain = dataDomains[domain].title;
+    source = dataSources[source].title;
+    return dataQuestions.filter(el => el.source.includes(source)).filter(el => el.domain==domain).filter(el => el.history.result=='wrong').length;
+}
+
 function getRandomQuestionsDomain(domain) {
 
     initDataHistory(); //to update the historic values any time a new quiz begins
