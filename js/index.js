@@ -20,10 +20,10 @@ function filterQuestionsIndex(e) {
 
         switch(e.target.value){
             case 'marked':
-                questions.filter(el => !el.dataset.marked).forEach(el => el.classList.add('hide'));
+                questions.filter(el => el.dataset.marked !== 'true').forEach(el => el.classList.add('hide'));
                 break;
             case 'unanswered':
-                questions.filter(el => el.dataset.result != 'unanswered').forEach(el => el.classList.add('hide'));
+                questions.filter(el => el.dataset.answered === 'true').forEach(el => el.classList.add('hide'));
                 break;
         }
     }
